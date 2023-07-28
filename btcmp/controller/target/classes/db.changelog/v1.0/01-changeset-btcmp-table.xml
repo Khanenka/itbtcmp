@@ -23,5 +23,14 @@
       path="01-drop-btcmp-table.sql"/>
   </rollback>
 </changeSet>
-
+  <changeSet id="3" author="khanenka">
+    <insert tableName="btcmp">
+      <column name="id_Person" value="1"/>
+      <column name="name" value="Ivan"/>
+      <column name="surname" value="Ivanov"/>
+      <column name="middlename" value="Ivanovich"/>
+      <column name="email" value="ivanov@gmail.com"/>
+      <column name="role" value="ADMINISTRATOR"/>
+    </insert>
+  </changeSet>
 </databaseChangeLog>

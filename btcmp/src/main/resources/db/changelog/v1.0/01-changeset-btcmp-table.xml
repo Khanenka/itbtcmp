@@ -13,6 +13,17 @@
     splitStatements="true"
     stripComments="true"
     path="01-create-btcmp-table.sql"/>
+
+
+  <sqlFile dbms="mysql"
+           encoding="UTF-8"
+           endDelimiter="\nGO"
+           relativeToChangelogFile="true"
+           splitStatements="true"
+           stripComments="true"
+           path="01-insert-btcmp-table.sql"/>
+
+
   <rollback>
     <sqlFile dbms="mysql"
       encoding="UTF-8"
@@ -22,6 +33,19 @@
       stripComments="true"
       path="01-drop-btcmp-table.sql"/>
   </rollback>
+
 </changeSet>
+
+  <changeSet id="3" author="khanenka">
+    <insert tableName="btcmp">
+      <column name="id_Person" value="1"/>
+      <column name="name" value="Example description"/>
+      <column name="surname" value="Example description"/>
+      <column name="middlename" value="Example description"/>
+      <column name="email" value="Example description"/>
+      <column name="role" value="Example description"/>
+    </insert>
+  </changeSet>
+
 
 </databaseChangeLog>
