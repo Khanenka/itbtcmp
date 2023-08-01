@@ -4,6 +4,8 @@ import com.khanenka.PersonRepo;
 import com.khanenka.personandrole.Person;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonController {
 
   @Autowired
-  PersonRepo personRepo;
+  private PersonRepo personRepo;
 
   @GetMapping("/hello")
   public String hello() {
@@ -23,14 +25,14 @@ public class PersonController {
 
 
   @PostMapping("/add")
-  Person newEmployee(@Validated @RequestBody Person person) {
-
-    System.out.println(person);
-    return personRepo.save(person);
+  public ResponseEntity<Person> newEmployee(@Validated @RequestBody Person person) {
+    Person save = personRepo.save(person);
+    return new ResponseEntity<>(save, HttpStatus.CREATED);
   }
 
   @GetMapping("/findall")
-  List<Person> all() {
-    return (List<Person>) personRepo.findAll();
+  ResponseEntity<List<Person>> all() {
+    Iterable<Person> all = personRepo.findAll();
+    return new ResponseEntity(all, HttpStatus.OK);
   }
 }

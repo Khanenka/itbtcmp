@@ -31,32 +31,32 @@ public class Person {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  Integer idPerson;
+  private Integer idPerson;
 
   @Column
   @Size(max = 40)
   @NotNull
-  String surname;
+  private String surname;
 
   @NotNull
   @Column
   @Size(max = 20)
-  String name;
+  private String name;
 
   @NotNull
   @Column
   @Size(max = 40)
-  String middlename;
+  private String middlename;
 
   @NotNull
   @Email
   @Column
   @Size(max = 50)
-  String email;
+  private String email;
 
   @NotNull
   @Column
-  Role role;
+  private Role role;
 
 
 }
