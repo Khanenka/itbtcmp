@@ -1,6 +1,14 @@
 package com.khanenka.personandrole;
 
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,11 +16,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
 
 @Data
-@Entity
+@Entity(name = "btcmp")
 @Table(name = "btcmp")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,16 +30,31 @@ import javax.persistence.*;
 public class Person {
 
   @Id
-  @Column(name = "id_Person")
-  int id;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  Integer idPerson;
+
   @Column
+  @Size(max = 40)
+  @NotNull
   String surname;
+
+  @NotNull
   @Column
+  @Size(max = 20)
   String name;
+
+  @NotNull
   @Column
-  String middleName;
+  @Size(max = 40)
+  String middlename;
+
+  @NotNull
+  @Email
   @Column
+  @Size(max = 50)
   String email;
+
+  @NotNull
   @Column
   Role role;
 

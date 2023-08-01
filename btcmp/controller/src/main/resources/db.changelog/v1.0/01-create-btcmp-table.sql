@@ -1,4 +1,4 @@
-create table btcmp (
+create table person (
 id_Person int not null auto_increment,
 surname VARCHAR(45) not null,
 name VARCHAR(45) not null,

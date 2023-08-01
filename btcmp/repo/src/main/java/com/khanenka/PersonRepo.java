@@ -1,8 +1,10 @@
 package com.khanenka;
 
-import com.khanenka.personandrole.Btcmp;
+import com.khanenka.personandrole.Person;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PersonRepo extends CrudRepository<Btcmp,Integer> {
+@Repository
+public interface PersonRepo extends CrudRepository<Person, Integer> {
 
 }

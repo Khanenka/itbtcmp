@@ -1,2 +1,2 @@
-drop table btcmp
+drop table person
 GO
