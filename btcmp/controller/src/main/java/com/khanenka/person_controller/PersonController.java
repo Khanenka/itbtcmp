@@ -4,6 +4,8 @@ import com.khanenka.PersonRepo;
 import com.khanenka.personandrole.Person;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonController {
 
   @Autowired
-  private PersonRepo personRepo;
+  PersonRepo personRepo;
 
   @GetMapping("/hello")
   public String hello() {
@@ -25,14 +27,15 @@ public class PersonController {
 
 
   @PostMapping("/add")
-  public ResponseEntity<Person> newEmployee(@Validated @RequestBody Person person) {
+  Person newEmployee(@Validated @RequestBody Person person) {
+
     Person save = personRepo.save(person);
-    return new ResponseEntity<>(save, HttpStatus.CREATED);
+    return new ResponseEntity<>(save,HttpStatus.CREATED).getBody();
   }
 
   @GetMapping("/findall")
   ResponseEntity<List<Person>> all() {
-    Iterable<Person> all = personRepo.findAll();
-    return new ResponseEntity(all, HttpStatus.OK);
+    List<Person> byOrderByEmailAsc = personRepo.findByOrderByEmailAsc();
+    return  new ResponseEntity<>(byOrderByEmailAsc, HttpStatus.CREATED);
   }
 }
